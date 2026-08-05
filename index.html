@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>C4 Launcher — установка</title>
+<style>
+  *{box-sizing:border-box}
+  :root{
+    --bg:#0d1117; --panel:#161b22; --line:#232a34;
+    --text:#e6edf3; --dim:#8b949e; --accent:#4FC3F7; --warn:#d29922;
+  }
+  body{margin:0;background:var(--bg);color:var(--text);
+       font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+       padding:40px 20px 70px}
+  .wrap{max-width:760px;margin:0 auto}
+  header{text-align:center;margin-bottom:38px}
+  h1{font-size:34px;margin:0 0 10px;letter-spacing:-.02em}
+  .tagline{color:var(--dim);font-size:17px;margin:0}
+  .cta{display:block;text-align:center;background:var(--accent);color:#07121a;
+       font-size:19px;font-weight:600;text-decoration:none;padding:18px 24px;
+       border-radius:14px;margin:30px 0 10px;transition:filter .15s}
+  .cta:hover{filter:brightness(1.08)}
+  .cta-note{text-align:center;color:var(--dim);font-size:13.5px;margin:0 0 36px}
+  h2{font-size:15px;text-transform:uppercase;letter-spacing:.08em;color:var(--dim);
+     margin:38px 0 14px;padding-top:20px;border-top:1px solid var(--line)}
+  ol{padding-left:22px;margin:0}
+  ol li{margin-bottom:16px}
+  ol li b{color:var(--text)}
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;
+         padding:18px 20px;margin:16px 0}
+  .panel p{margin:0 0 8px}
+  .panel p:last-child{margin:0}
+  .req{display:grid;grid-template-columns:auto 1fr;gap:10px 16px;font-size:15px}
+  .req dt{color:var(--dim)}
+  .req dd{margin:0}
+  .warn{border-left:3px solid var(--warn);padding-left:16px;color:var(--text)}
+  .warn b{color:var(--warn)}
+  footer{margin-top:44px;padding-top:20px;border-top:1px solid var(--line);
+         color:var(--dim);font-size:13.5px;text-align:center}
+  a{color:var(--accent)}
+  code{background:#1c232d;padding:2px 6px;border-radius:5px;font-size:14px;
+       font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>C4 Launcher</h1>
+    <p class="tagline">Приборная панель и лаунчер для головного устройства Citroën C4</p>
+  </header>
+
+  <a class="cta" href="https://github.com/Fakt37/can-bus-c4-releases/releases/latest">Скачать последнюю версию</a>
+  <p class="cta-note">Откроется страница релиза — нажмите на файл <code>c4-launcher-….apk</code></p>
+
+  <h2>Что это</h2>
+  <div class="panel">
+    <p>Заменяет штатный экран магнитолы: показывает данные с CAN-шины автомобиля —
+    расход, запас хода, температуру двигателя, напряжение, состояние дверей и света,
+    ошибки бортового компьютера, климат.</p>
+    <p>Плюс лаунчер приложений, медиаплеер, камера заднего вида, назначение действий
+    на кнопки руля и учёт технического обслуживания.</p>
+  </div>
+
+  <h2>Что нужно</h2>
+  <dl class="req">
+    <dt>Магнитола</dt><dd>Topway TS10S (и родственные TS10, TS18), Android 9 и новее</dd>
+    <dt>Плата</dt><dd>Модуль ESP32 с прошивкой — читает CAN-шину автомобиля</dd>
+    <dt>Автомобиль</dt><dd>Citroën C4 первого поколения (2004–2010)</dd>
+  </dl>
+  <div class="panel warn">
+    <p><b>Без платы</b> приложение работает как лаунчер, но данные автомобиля показывать
+    не будет — их читает именно она.</p>
+  </div>
+
+  <h2>Установка</h2>
+  <ol>
+    <li><b>Скачайте APK</b> — на телефон, флешку или сразу в магнитолу, если на ней есть браузер.</li>
+    <li><b>Перенесите файл в магнитолу</b>, если качали не на неё: подойдёт USB-флешка.</li>
+    <li><b>Откройте файл</b> через файловый менеджер магнитолы. Android спросит разрешение
+      на установку из неизвестных источников — разрешите его для файлового менеджера.</li>
+    <li><b>Назначьте приложение домашним экраном</b>, если хотите, чтобы оно запускалось
+      при включении: <code>Настройки → Приложения → Приложения по умолчанию → Главный экран</code>.</li>
+    <li><b>Выдайте доступы</b> — при первом запуске приложение покажет мастер и объяснит,
+      зачем нужен каждый из них.</li>
+  </ol>
+
+  <h2>Первый запуск с платой</h2>
+  <div class="panel">
+    <p>Плата привязывается к автомобилю сама: заведите двигатель и подождите несколько
+    секунд — она запомнит VIN и дальше будет работать только на этой машине.</p>
+    <p>До привязки приложение честно скажет об этом на экране. Ничего нажимать не нужно.</p>
+  </div>
+
+  <h2>Обновления</h2>
+  <div class="panel">
+    <p>Приложение проверяет обновления само: <code>Настройки → Обновление</code>.
+    Скачивание и установка — в один тап, скачивать APK отсюда повторно не нужно.</p>
+  </div>
+
+  <footer>
+    Исходный код и история версий —
+    <a href="https://github.com/Fakt37/can-bus-c4-releases/releases">на GitHub</a>
+  </footer>
+
+</div>
+</body>
+</html>
